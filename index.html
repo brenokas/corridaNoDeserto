@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="divQtdVoltas" class="divContainer divQtdVoltas">
+			<div class="container container_voltas">
+				<h2>Cadastro da corrida</h2>
+				Informe a quantidade de voltas:
+				<select name="quantidadeVoltas" id="qtdVoltas" class="inputClass">
+					<option value="nada" disabled selected></option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+				<button class="btn btn_cadastro" onclick="cadastrarVoltas()">Cadastrar</button>
+				<div id="outputVoltas" style="color: rgb(13, 185, 4)"></div>
+			</div>
+		</div>
+		<div id="divQtdCavalos" class="divContainer divQtdCavalos">
+			<div class="container container_qtd">
+				<h2>Cadastro da corrida</h2>
+				Quantidade de cavalos a serem registrados:
+				<select name="quantidadeCavalos" id="quantidade_cavalos" class="inputClass">
+					<option value="nada" disabled selected></option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+				</select>
+				<button class="btn btn_RegistroNome" onclick="registrarCavalos()">Registrar</button>
+				<div id="outputCavalos" class="container_qtd"></div>
+			</div>
+		</div>
+		<div id="divNomesCavalos" class="divContainer">
+			<div class="container container_qtd_cavalos">
+				<h2>Cadastro da corrida</h2>
+				Informe os nomes dos cavalos:
+				<input type="text" id="ipt_nomes" placeholder="Ex: Pé de Pano" class="inputNomes inputClass" />
+				<button onclick="cadastrarNome()" class="btn btn_cadastrar_nomes">Cadastrar</button>
+				<button onclick="iniciarJogo()" class="btn">Iniciar jogo</button>
+			</div>
+		</div>
+		<div id="divJogo" class="divContainer">
+			<div class="container">
+				<h2>Corrida</h2>
+				<button onclick="iniciarCorrida()" class="btn btn_largada">Dar a largada</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		window.onload = () => {
+			document.getElementById('divQtdCavalos').style.display = 'none';
+			document.getElementById('divNomesCavalos').style.display = 'none';
+		};
+
+		var vt_nomes = [];
+		var quantidadeVoltas = 0;
+		var qtdCavalos = 0;
+
+		function cadastrarVoltas() {
+			quantidadeVoltas = Number(qtdVoltas.value);
+			outputVoltas.innerHTML = 'Voltas cadastradas com sucesso!';
+			setTimeout(() => {
+				document.getElementById('divQtdVoltas').style.display = 'none';
+				document.getElementById('divQtdCavalos').style.display = 'flex';
+			}, 1500);
+		}
+
+		function registrarCavalos() {
+			qtdCavalos = Number(quantidade_cavalos.value);
+			outputCavalos.innerHTML = 'Quantidade cadastrada com sucesso!';
+
+			setTimeout(() => {
+				document.getElementById('divQtdCavalos').style.display = 'none';
+				document.getElementById('divNomesCavalos').style.display = 'flex';
+			}, 1500);
+		}
+
+		function cadastrarNome() {
+			var nome = ipt_nomes.value;
+
+			if (nome != '') {
+				if (vt_nomes.length == qtdCavalos) {
+					alert('Não pode mais cadastrar cavalos!');
+					ipt_nomes.value = '';
+				} else {
+					vt_nomes.push(nome);
+					ipt_nomes.value = '';
+				}
+			} else {
+				alert('Preencha o campo');
+			}
+		}
+
+		function iniciarJogo() {
+			if (vt_nomes.length != qtdCavalos) {
+				alert('Cadastre o nome para todos os cavalos!');
+			} else {
+				document.getElementById('divNomesCavalos').style.display = 'none';
+			}
+		}
+
+		function iniciarCorrida() {
+
+		}
+	</script>
+</html>

@@ -1,0 +1,74 @@
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+.divContainer {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 6vh;
+	background-image: url('img/4272099.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.inputClass {
+	width: 10vw;
+	height: 5vh;
+	font-size: 30px;
+	text-align: center;
+	background-color: rgb(244, 116, 69);
+}
+.btn {
+	border-style: outset;
+	border-color: black;
+	border-radius: 20px;
+	width: 10vw;
+	height: 7vh;
+	color: white;
+	background-color: rgb(13, 185, 4);
+	transition: transform 0.4s ease-in-out;
+	font-size: 30px;
+}
+
+.btn:hover {
+	transform: scale(1.2);
+	background-color: rgb(7, 65, 4);
+}
+
+.btn_largada {
+	width: 300px;
+}
+
+.inputNomes {
+  width: 400px;
+}
+
+.inputNomes::placeholder {
+  color: rgba(0, 0, 0, 0.328);
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.outputVoltas div {
+	font-weight: bold;
+}
+
+.container {
+	display: flex;
+	height: 50vh;
+	width: 40vw;
+	color: black;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 6vh;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 30px;
+	background-color: whitesmoke;
+	border-radius: 40px;
+	padding: 5vh;
+}
