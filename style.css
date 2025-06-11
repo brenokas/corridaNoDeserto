@@ -1,124 +1,112 @@
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-	margin: 0;
-	overflow: hidden;
+  font-family: 'Georgia', serif;
+  background-image: url('./img/4272099.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #4a2c0a;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+
+/* Containers */
 .divContainer {
-	display: flex;
-	height: 100vh;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	gap: 6vh;
-	background-image: url('img/4272099.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	overflow-y: auto;
-	padding: 2vh;
-}
-
-.inputClass {
-	width: 20vw;
-	height: 5vh;
-	font-size: 30px;
-	text-align: center;
-	background-color: rgb(244, 116, 69);
-}
-
-.btn {
-	border-style: outset;
-	border-color: black;
-	border-radius: 20px;
-	width: 10vw;
-	height: 7vh;
-	color: white;
-	background-color: rgb(13, 185, 4);
-	transition: transform 0.4s ease-in-out;
-	font-size: 30px;
-}
-
-.btn:hover {
-	transform: scale(1.2);
-	background-color: rgb(7, 65, 4);
-}
-
-.btn_largada {
-	width: 300px;
-}
-
-.inputNomes {
-	width: 400px;
-}
-
-.inputNomes::placeholder {
-	color: rgba(0, 0, 0, 0.328);
-	font-size: 1.3rem;
-	text-align: center;
-}
-
-.outputVoltas div {
-	font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center; 
-	gap: 2vh;
-	width: 90vw;
-	max-width: 1000px;
-	min-height: 60vh;
-	background-color: whitesmoke;
-	border-radius: 40px;
-	padding: 5vh;
-	overflow-y: auto;
-	box-sizing: border-box;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-size: 30px;
-	color: black; 
+  background-color: #fff8e1;
+  border: 3px solid #d2a679;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-#pista {
-	text-align: left; 
-	margin-top: 20px;
+/* Títulos */
+h2 {
+  color: #8b5e3c;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
 }
 
-#vencedor {
-	margin-top: 20px;
-	font-size: 1.2em;
-	color: black; 
-	text-align: center; 
-	width: 100%; 
+/* Inputs e Selects */
+.inputClass,
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 2px solid #d2a679;
+  background-color: #fffaf0;
+  font-size: 16px;
 }
 
-#historico {
-	text-align: center; 
-	width: 100%;
-	max-height: 50vh;
-	overflow-y: auto;
-	font-size: 20px;
-	line-height: 1.5;
-	word-break: break-word;
+/* Botões */
+.btn {
+  background-color: #c87f2d;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
 }
 
-#btnReiniciar {
-	margin-top: 20px;
-	background-color: rgb(200, 50, 50);
-	width: 15vw;
-	height: 6vh;
-	font-size: 24px;
-	color: white;
-	border-radius: 15px;
-	cursor: pointer;
-	transition: background-color 0.3s;
+.btn:hover {
+  background-color: #a8641f;
 }
 
-#btnReiniciar:hover {
-	background-color: rgb(150, 0, 0);
+/* Mensagens e saída */
+#historico,
+#vencedor,
+#outputVoltas,
+#outputCavalos {
+  background-color: #fffaf0;
+  border: 2px dashed #e69b56;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
 }
 
-#outputCavalos,
-#outputVoltas {
-	color: green; 
-	font-weight: bold;
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
 }

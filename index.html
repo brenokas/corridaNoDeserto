@@ -1,243 +1,247 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Turfe Amigo</title>
-	</head>
-	<body>
-		<div id="divQtdVoltas" class="divContainer divQtdVoltas">
-			<div class="container container_voltas">
-				<h2>Cadastro da corrida</h2>
-				Informe a quantidade de voltas:
-				<select name="quantidadeVoltas" id="qtdVoltas" class="inputClass">
-					<option value="nada" disabled selected></option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-				<button class="btn btn_cadastro" onclick="cadastrarVoltas()">Cadastrar</button>
-				<div id="outputVoltas"></div>
-			</div>
-		</div>
 
-		<div id="divQtdCavalos" class="divContainer divQtdCavalos">
-			<div class="container container_qtd">
-				<h2>Cadastro da corrida</h2>
-				Quantidade de cavalos a serem registrados:
-				<select name="quantidadeCavalos" id="quantidade_cavalos" class="inputClass">
-					<option value="nada" disabled selected></option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-				</select>
-				<button class="btn btn_RegistroNome" onclick="registrarCavalos()">Registrar</button>
-				<div id="outputCavalos" class="container_qtd"></div>
-			</div>
-		</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="style.css" />
+	<title>Turfe Amigo</title>
+	<link rel="icon" href="./img/cavalo.png" type="caminhoDaImagem">
+</head>
 
-		<div id="divNomesCavalos" class="divContainer">
-			<div class="container container_qtd_cavalos">
-				<h2>Cadastro da corrida</h2>
-				<div id="inputsNomes"></div>
-				<button onclick="iniciarJogo()" class="btn">Iniciar jogo</button>
-			</div>
+<body>
+	<div id="divQtdVoltas" class="divContainer divQtdVoltas">
+		<div class="container container_voltas">
+			<h2>Cadastro da corrida</h2>
+			Informe a quantidade de voltas:
+			<select name="quantidadeVoltas" id="qtdVoltas" class="inputClass">
+				<option value="nada" disabled selected></option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+			<button class="btn btn_cadastro" onclick="cadastrarVoltas()">Cadastrar</button>
+			<div id="outputVoltas"></div>
 		</div>
+	</div>
 
-		<div id="divJogo" class="divContainer">
-			<div class="container">
-				<h2>Corrida - Turfe Amigo</h2>
-				<button onclick="darVolta()" class="btn btn_largada" id="btn_dar_volta">Dar uma volta</button>
-				<div id="historico" style="margin-top: 20px"></div>
-				<div id="vencedor" style="margin-top: 20px"></div>
-			</div>
+	<div id="divQtdCavalos" class="divContainer divQtdCavalos">
+		<div class="container container_qtd">
+			<h2>Cadastro da corrida</h2>
+			Quantidade de cavalos a serem registrados:
+			<select name="quantidadeCavalos" id="quantidade_cavalos" class="inputClass">
+				<option value="nada" disabled selected></option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>
+			<button class="btn btn_RegistroNome" onclick="registrarCavalos()">Registrar</button>
+			<div id="outputCavalos" class="container_qtd"></div>
 		</div>
+	</div>
 
-		<script>
-			window.onload = function () {
+	<div id="divNomesCavalos" class="divContainer">
+		<div class="container container_qtd_cavalos">
+			<h2>Cadastro da corrida</h2>
+			<div id="inputsNomes"></div>
+			<button onclick="iniciarJogo()" class="btn">Iniciar jogo</button>
+		</div>
+	</div>
+
+	<div id="divJogo" class="divContainer">
+		<div class="container">
+			<h2>Corrida</h2>
+			<button onclick="darVolta()" class="btn btn_largada" id="btn_dar_volta">Dar uma volta</button>
+			<div id="historico" style="margin-top: 20px"></div>
+			<div id="vencedor" style="margin-top: 20px"></div>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			document.getElementById('divQtdCavalos').style.display = 'none';
+			document.getElementById('divNomesCavalos').style.display = 'none';
+			document.getElementById('divJogo').style.display = 'none';
+		};
+
+		let quantidadeVoltas = 0;
+		let qtdCavalos = 0;
+		let nomes = [];
+		let tempos = [];
+		let voltasRealizadas = 0;
+
+		function cadastrarVoltas() {
+			const selectVoltas = document.getElementById('qtdVoltas');
+			if (selectVoltas.value === 'nada') {
+				alert('Por favor, selecione a quantidade de voltas para a corrida.');
+				return;
+			}
+
+			quantidadeVoltas = Number(selectVoltas.value);
+			const outputVoltas = document.getElementById('outputVoltas');
+			outputVoltas.textContent = 'Voltas cadastradas com sucesso!';
+
+			setTimeout(function () {
+				document.getElementById('divQtdVoltas').style.display = 'none';
+				document.getElementById('divQtdCavalos').style.display = 'flex';
+			}, 1500);
+		}
+
+		function registrarCavalos() {
+			const selectCavalos = document.getElementById('quantidade_cavalos');
+			if (selectCavalos.value === 'nada') {
+				alert('Por favor, selecione a quantidade de cavalos para a corrida.');
+				return;
+			}
+
+			qtdCavalos = Number(selectCavalos.value);
+			const outputCavalos = document.getElementById('outputCavalos');
+			outputCavalos.textContent = 'Quantidade de cavalos cadastrada com sucesso!';
+
+			setTimeout(function () {
 				document.getElementById('divQtdCavalos').style.display = 'none';
-				document.getElementById('divNomesCavalos').style.display = 'none';
-				document.getElementById('divJogo').style.display = 'none';
-			};
+				document.getElementById('divNomesCavalos').style.display = 'flex';
+				gerarInputsNomes();
+			}, 1500);
+		}
 
-			let quantidadeVoltas = 0;
-			let qtdCavalos = 0;
-			let nomes = [];
-			let tempos = [];
-			let voltasRealizadas = 0;
+		function gerarInputsNomes() {
+			const containerNomes = document.getElementById('inputsNomes');
+			containerNomes.innerHTML = '';
 
-			function cadastrarVoltas() {
-				const selectVoltas = document.getElementById('qtdVoltas');
-				if (selectVoltas.value === 'nada') {
-					alert('Por favor, selecione a quantidade de voltas para a corrida.');
+			for (let i = 0; i < qtdCavalos; i++) {
+				const inputNome = document.createElement('input');
+				inputNome.type = 'text';
+				inputNome.id = 'nome_' + i;
+				inputNome.placeholder = `Nome do Cavalo ${i + 1}`;
+				inputNome.className = 'inputClass';
+				containerNomes.appendChild(inputNome);
+				containerNomes.appendChild(document.createElement('br'));
+			}
+		}
+
+		function iniciarJogo() {
+			nomes = [];
+			tempos = [];
+			voltasRealizadas = 0;
+
+			for (let i = 0; i < qtdCavalos; i++) {
+				const inputNome = document.getElementById(`nome_${i}`);
+				const nomeCavalo = inputNome.value.trim();
+
+				if (nomeCavalo === '') {
+					alert('Por favor, preencha o nome de todos os cavalos.');
 					return;
 				}
-
-				quantidadeVoltas = Number(selectVoltas.value);
-				const outputVoltas = document.getElementById('outputVoltas');
-				outputVoltas.textContent = 'Voltas cadastradas com sucesso!';
-
-				setTimeout(function () {
-					document.getElementById('divQtdVoltas').style.display = 'none';
-					document.getElementById('divQtdCavalos').style.display = 'flex';
-				}, 1500);
+				nomes.push(nomeCavalo);
+				tempos.push(0);
 			}
 
-			function registrarCavalos() {
-				const selectCavalos = document.getElementById('quantidade_cavalos');
-				if (selectCavalos.value === 'nada') {
-					alert('Por favor, selecione a quantidade de cavalos para a corrida.');
-					return;
-				}
+			document.getElementById('divNomesCavalos').style.display = 'none';
+			document.getElementById('divJogo').style.display = 'flex';
+			document.getElementById('historico').innerHTML = '';
+			document.getElementById('vencedor').innerHTML = '';
+		}
 
-				qtdCavalos = Number(selectCavalos.value);
-				const outputCavalos = document.getElementById('outputCavalos');
-				outputCavalos.textContent = 'Quantidade de cavalos cadastrada com sucesso!';
-
-				setTimeout(function () {
-					document.getElementById('divQtdCavalos').style.display = 'none';
-					document.getElementById('divNomesCavalos').style.display = 'flex';
-					gerarInputsNomes();
-				}, 1500);
+		function darVolta() {
+			if (voltasRealizadas >= quantidadeVoltas) {
+				return;
 			}
 
-			function gerarInputsNomes() {
-				const containerNomes = document.getElementById('inputsNomes');
-				containerNomes.innerHTML = '';
+			voltasRealizadas++;
+			let voltaLog = `<b>-- Volta ${String(voltasRealizadas).padStart(2, '0')} --</b><br>`;
 
-				for (let i = 0; i < qtdCavalos; i++) {
-					const inputNome = document.createElement('input');
-					inputNome.type = 'text';
-					inputNome.id = 'nome_' + i;
-					inputNome.placeholder = `Nome do Cavalo ${i + 1}`;
-					inputNome.className = 'inputClass';
-					containerNomes.appendChild(inputNome);
-					containerNomes.appendChild(document.createElement('br'));
-				}
+			let dadosVolta = [];
+			for (let i = 0; i < qtdCavalos; i++) {
+				let tempoVolta = (Math.random() * 2 + 7).toFixed(1);
+				tempos[i] += parseFloat(tempoVolta);
+				dadosVolta.push({ nome: nomes[i], tempo: tempoVolta, total: tempos[i] });
 			}
 
-			function iniciarJogo() {
-				nomes = [];
-				tempos = [];
-				voltasRealizadas = 0;
-
-				for (let i = 0; i < qtdCavalos; i++) {
-					const inputNome = document.getElementById(`nome_${i}`);
-					const nomeCavalo = inputNome.value.trim();
-
-					if (nomeCavalo === '') {
-						alert('Por favor, preencha o nome de todos os cavalos.');
-						return;
-					}
-					nomes.push(nomeCavalo);
-					tempos.push(0);
-				}
-
-				document.getElementById('divNomesCavalos').style.display = 'none';
-				document.getElementById('divJogo').style.display = 'flex';
-				document.getElementById('historico').innerHTML = '';
-				document.getElementById('vencedor').innerHTML = '';
-			}
-
-			function darVolta() {
-				if (voltasRealizadas >= quantidadeVoltas) {
-					return;
-				}
-
-				voltasRealizadas++;
-				let voltaLog = `<b>-- Volta ${String(voltasRealizadas).padStart(2, '0')} --</b><br>`;
-
-				let dadosVolta = [];
-				for (let i = 0; i < qtdCavalos; i++) {
-					let tempoVolta = (Math.random() * 2 + 7).toFixed(1);
-					tempos[i] += parseFloat(tempoVolta);
-					dadosVolta.push({ nome: nomes[i], tempo: tempoVolta, total: tempos[i] });
-				}
-
-				for (let i = 0; i < dadosVolta.length - 1; i++) {
-					for (let j = i + 1; j < dadosVolta.length; j++) {
-						if (dadosVolta[i].total > dadosVolta[j].total) {
-							let temp = dadosVolta[i];
-							dadosVolta[i] = dadosVolta[j];
-							dadosVolta[j] = temp;
-						}
+			for (let i = 0; i < dadosVolta.length - 1; i++) {
+				for (let j = i + 1; j < dadosVolta.length; j++) {
+					if (dadosVolta[i].total > dadosVolta[j].total) {
+						let temp = dadosVolta[i];
+						dadosVolta[i] = dadosVolta[j];
+						dadosVolta[j] = temp;
 					}
 				}
-
-				for (let k = 0; k < dadosVolta.length; k++) {
-					let cavalo = dadosVolta[k];
-					voltaLog += `${cavalo.nome} - Volta: ${cavalo.tempo}s<br> Total: ${cavalo.total.toFixed(2)}s <br><br> `;
-				}
-
-				let lider = dadosVolta[0];
-				let segundo = dadosVolta[1];
-				let diferenca = (segundo.total - lider.total).toFixed(2);
-
-				voltaLog += `<br><strong>Líder: ${lider.nome} (+${diferenca}s do 2º)</strong><br><br>`;
-
-				document.getElementById('historico').innerHTML = voltaLog;
-
-				if (voltasRealizadas === quantidadeVoltas) {
-					finalizarCorrida();
-				}
 			}
 
-			function finalizarCorrida() {
-				let resultados = [];
-				for (let i = 0; i < nomes.length; i++) {
-					resultados.push({ nome: nomes[i], tempo: tempos[i] });
-				}
+			for (let k = 0; k < dadosVolta.length; k++) {
+				let cavalo = dadosVolta[k];
+				voltaLog += `${cavalo.nome} - Volta: ${cavalo.tempo}s<br> Total: ${cavalo.total.toFixed(2)}s <br><br> `;
+			}
 
-				for (let i = 0; i < resultados.length - 1; i++) {
-					for (let j = i + 1; j < resultados.length; j++) {
-						if (resultados[i].tempo > resultados[j].tempo) {
-							let temp = resultados[i];
-							resultados[i] = resultados[j];
-							resultados[j] = temp;
-						}
+			let lider = dadosVolta[0];
+			let segundo = dadosVolta[1];
+			let diferenca = (segundo.total - lider.total).toFixed(2);
+
+			voltaLog += `<br><strong>Líder: ${lider.nome} (+${diferenca}s do 2º)</strong><br><br>`;
+
+			document.getElementById('historico').innerHTML = voltaLog;
+
+			if (voltasRealizadas === quantidadeVoltas) {
+				finalizarCorrida();
+			}
+		}
+
+		function finalizarCorrida() {
+			let resultados = [];
+			for (let i = 0; i < nomes.length; i++) {
+				resultados.push({ nome: nomes[i], tempo: tempos[i] });
+			}
+
+			for (let i = 0; i < resultados.length - 1; i++) {
+				for (let j = i + 1; j < resultados.length; j++) {
+					if (resultados[i].tempo > resultados[j].tempo) {
+						let temp = resultados[i];
+						resultados[i] = resultados[j];
+						resultados[j] = temp;
 					}
 				}
-
-				let podiumHTML = `<h3>🏁 Resultado Final 🏁</h3>`;
-				podiumHTML += `<p>1º Lugar – ${resultados[0].nome}</p>`;
-				if (resultados.length > 1) {
-					podiumHTML += `<p>2º Lugar – ${resultados[1].nome}</p>`;
-				}
-				if (resultados.length > 2) {
-					podiumHTML += `<p>3º Lugar – ${resultados[2].nome}</p>`;
-				}
-
-				podiumHTML += `<button id="btnFinalizar" class="btn" onclick="finalizarJogo()">Finalizar Jogo</button>`;
-
-				document.getElementById('vencedor').innerHTML = podiumHTML;
-				document.getElementById('btn_dar_volta').style.display = 'none';
 			}
 
-			function finalizarJogo() {
-				document.getElementById('divJogo').style.display = 'none';
-				document.getElementById('divQtdVoltas').style.display = 'flex';
-
-				document.getElementById('outputVoltas').textContent = '';
-				document.getElementById('outputCavalos').textContent = '';
-				document.getElementById('inputsNomes').innerHTML = '';
-				document.getElementById('historico').innerHTML = '';
-				document.getElementById('vencedor').innerHTML = '';
-
-				quantidadeVoltas = 0;
-				qtdCavalos = 0;
-				nomes = [];
-				tempos = [];
-				voltasRealizadas = 0;
-
-				document.getElementById('qtdVoltas').value = 'nada';
-				document.getElementById('quantidade_cavalos').value = 'nada';
+			let podiumHTML = `<h3>🏁 Resultado Final 🏁</h3>`;
+			podiumHTML += `<p>1º Lugar – ${resultados[0].nome}</p>`;
+			if (resultados.length > 1) {
+				podiumHTML += `<p>2º Lugar – ${resultados[1].nome}</p>`;
 			}
-		</script>
-	</body>
+			if (resultados.length > 2) {
+				podiumHTML += `<p>3º Lugar – ${resultados[2].nome}</p>`;
+			}
+
+			podiumHTML += `<button id="btnFinalizar" class="btn" onclick="finalizarJogo()">Finalizar Jogo</button>`;
+
+			document.getElementById('vencedor').innerHTML = podiumHTML;
+			document.getElementById('btn_dar_volta').style.display = 'none';
+		}
+
+		function finalizarJogo() {
+			document.getElementById('divJogo').style.display = 'none';
+			document.getElementById('divQtdVoltas').style.display = 'flex';
+
+			document.getElementById('outputVoltas').textContent = '';
+			document.getElementById('outputCavalos').textContent = '';
+			document.getElementById('inputsNomes').innerHTML = '';
+			document.getElementById('historico').innerHTML = '';
+			document.getElementById('vencedor').innerHTML = '';
+
+			quantidadeVoltas = 0;
+			qtdCavalos = 0;
+			nomes = [];
+			tempos = [];
+			voltasRealizadas = 0;
+
+			document.getElementById('qtdVoltas').value = 'nada';
+			document.getElementById('quantidade_cavalos').value = 'nada';
+		}
+	</script>
+</body>
+
 </html>
